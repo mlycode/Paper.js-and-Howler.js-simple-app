@@ -142,9 +142,12 @@ var keySound = {
 
 	var circles = [];
 
+	var keyDown = false;
 
 	function onKeyDown(event){
 		if(keySound[event.key]){
+			if(keyDown) return;
+			keyDown = true;
 			var r = Math.floor(Math.random()*256);          
 			var g = Math.floor(Math.random()*256);          
 			var b = Math.floor(Math.random()*256);          
@@ -157,7 +160,11 @@ var keySound = {
 			keySound[event.key].sound.play();
 			circles.push(newCircle);
 		}
-	}
+	};
+
+	function onKeyUp(event){
+		keyDown = false;
+	};
 		
 
 	function onFrame(event){
